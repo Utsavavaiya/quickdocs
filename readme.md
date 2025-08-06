@@ -36,13 +36,15 @@ This project includes all the assets you need to get up and running with the Qui
 
 1. **Create the database and tables:**
 
+```bash
 mysql -u <user> -p < schema.sql
-
+```
 
 2. **Insert the sample data:**
 
+```bash
 mysql -u <user> -p < sample_data.sql
-
+```
 
 3. **Verify your tables and data**  
 Use the SELECT statements in `schema.sql` or a MySQL client to check that tables and data are loaded as expected.
@@ -67,14 +69,17 @@ A Flask-based application for registering customers, assigning processes, upload
 
 2. **Install and activate a virtual environment (optional but recommended)**
 
+```bash
 python -m venv venv
 source venv/bin/activate # On Unix/Mac
 venv\Scripts\activate # On Windows
-
+```
 
 3. **Install required dependencies**
 
+```bash
 pip install -r requirements.txt
+```
 
 *Dependencies needed:*
 - Flask
@@ -146,15 +151,17 @@ An intuitive tool that converts natural language questions into accurate MySQL S
 
 1. **Create and activate a virtual environment (recommended)**
 
+```bash
 python -m venv venv
 source venv/bin/activate # On Unix or MacOS
 venv\Scripts\activate # On Windows
-
+```
 
 2. **Install required Python dependencies**
 
+```bash
 pip install -r requirements.txt
-
+```
 
 3. **Set up your environment variables**
 - Create a `.env` file in your root directory with the following, replacing placeholder values as appropriate:
