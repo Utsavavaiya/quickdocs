@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Status Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #f4f4f4; }
+
+        .completed { background-color: #c8e6c9; }   /* Green */
+        .in_progress { background-color: #fff9c4; } /* Yellow */
+        .pending { background-color: #ffcdd2; }    /* Red */
+    </style>
+</head>
+<body>
+    <h1>Status Dashboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Process Name</th>
+                <th>Documents Submitted Status</th>
+                <th>Completion Percentage</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for assignment in assignments %}
+                <tr class="
+                    {% if assignment.assignment_status == 'completed' %}
+                        completed
+                    {% elif assignment.assignment_status == 'in-progress' %}
+                        in_progress
+                    {% else %}
+                        pending
+                    {% endif %}
+                ">
+                    <td>{{ assignment.customer_name }}</td>
+                    <td>{{ assignment.process_name }}</td>
+                    <td>{{ assignment.docs_status }}</td>
+                    <td>{{ assignment.completion_percentage }}%</td>
+                    <td>{{ assignment.assignment_status.replace('-', ' ').title() }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

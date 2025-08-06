@@ -1,0 +1,5 @@
+MYSQL_HOST = 'localhost'
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = 'Abcd@123456789'
+MYSQL_DB = 'quickdocs'
+MYSQL_CURSORCLASS = 'DictCursor'

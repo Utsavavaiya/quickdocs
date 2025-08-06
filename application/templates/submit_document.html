@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Submit Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+        }
+
+        .message {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        label {
+            display: block;
+            margin-top: 1em;
+        }
+
+        select,
+        input[type="file"],
+        textarea {
+            width: 300px;
+            margin-top: 0.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Submit Document</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="message {{ category }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <label for="customer_id">Customer*</label>
+        <select name="customer_id" required>
+            <option value="">-- Select Customer --</option>
+            {% for c in customers %}
+            <option value="{{ c.id }}">{{ c.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="process_id">Process*</label>
+        <select name="process_id" required>
+            <option value="">-- Select Process --</option>
+            {% for p in processes %}
+            <option value="{{ p.id }}">{{ p.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="document_type_id">Document Type*</label>
+        <select name="document_type_id" required>
+            <option value="">-- Select Document Type --</option>
+            {% for d in document_types %}
+            <option value="{{ d.id }}">{{ d.document_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="file">File to Upload*</label>
+        <input type="file" name="file" accept=".pdf,.png,.jpg,.jpeg" required />
+
+        <label for="ocr_extracted_data">OCR Extracted Data (JSON format)</label>
+        <textarea name="ocr_extracted_data" rows="6" placeholder='{"field1": "value", "field2": "value"}'></textarea>
+
+        <br /><br />
+        <button type="submit">Upload Document</button>
+    </form>
+</body>
+
+</html>

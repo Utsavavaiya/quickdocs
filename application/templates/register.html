@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Customer Registration</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 2em; }
+      .message { padding: 10px; margin-bottom: 15px; border-radius: 4px; }
+      .error { background-color: #f8d7da; color: #721c24; }
+      .success { background-color: #d4edda; color: #155724; }
+      table { width: 100%; border-collapse: collapse; margin-top: 2em; }
+      th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+      th { background-color: #f2f2f2; }
+      label, select, input { display: block; margin-top: 10px; }
+      select, input { padding: 5px; width: 300px; }
+    </style>
+</head>
+<body>
+    <h1>Register Customer</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="message {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('register') }}">
+        <label for="name">Name*:</label>
+        <input type="text" name="name" id="name" required />
+
+        <label for="email">Email*:</label>
+        <input type="email" name="email" id="email" required />
+
+        <label for="phone">Phone:</label>
+        <input type="text" name="phone" id="phone" />
+
+        <label for="process_id">Assign Process*:</label>
+        <select name="process_id" id="process_id" required>
+            <option value="">-- Select Process --</option>
+            {% for process in processes %}
+                <option value="{{ process.id }}">{{ process.name }}</option>
+            {% endfor %}
+        </select>
+
+        <br/>
+        <button type="submit">Register Customer</button>
+    </form>
+
+    {% if customers %}
+    <h2>Registered Customers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Registered On</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+            <tr>
+                <td>{{ customer.id }}</td>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.phone or '-' }}</td>
+                <td>{{ customer.registration_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>

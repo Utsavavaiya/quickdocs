@@ -1,0 +1,6 @@
+Flask
+Flask-MySQLdb
+python-dotenv
+mysqlclient
+mysql-connector-python
+openai
