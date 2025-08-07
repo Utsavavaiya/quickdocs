@@ -240,11 +240,11 @@ python query_interface.py
 
 ## Example of Successful Queries
 
-![alt text](</nl_query/image1.jpg>)
+![alt text](</nl_query/screenshots/valid1.jpg>)
 
 ## Example of Error Handling
 
-![alt text](<./nl_query/image2.jpg>)
+![alt text](<./nl_query/screenshots/invalid1.jpg>)
 
 ---
 
