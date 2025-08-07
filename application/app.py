@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
 from flask_mysqldb import MySQL
-import db_config
 from dotenv import load_dotenv
 import os
 
@@ -14,12 +13,11 @@ ALLOWED_EXTENSIONS = {'pdf','png','jpg','jpeg'}
 
 
 # Configuring MySQL 
-app.config['MYSQL_HOST'] = db_config.MYSQL_HOST
-app.config['MYSQL_USER'] = db_config.MYSQL_USER
-app.config['MYSQL_PASSWORD'] = db_config.MYSQL_PASSWORD
-app.config['MYSQL_DB'] = db_config.MYSQL_DB
-app.config['MYSQL_CURSORCLASS'] = db_config.MYSQL_CURSORCLASS
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MYSQL_HOST'] = os.getenv("MYSQL_HOST")
+app.config['MYSQL_USER'] = os.getenv("MYSQL_USER")
+app.config['MYSQL_PASSWORD'] = os.getenv("MYSQL_PASSWORD")
+app.config['MYSQL_DB'] = os.getenv("MYSQL_DATABASE")
+app.config['MYSQL_CURSORCLASS'] = os.getenv("MYSQL_CURSORCLASS", "DictCursor")
 
 # Create upload folder if not exists
 if not os.path.exists(UPLOAD_FOLDER):
