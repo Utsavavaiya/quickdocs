@@ -1,3 +1,11 @@
+# Setup Instructions
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/Utsavavaiya/quickdocs.git
+```
+
 # For Database Schema & Assets
 
 This project includes all the assets you need to get up and running with the QuickDocs database:
@@ -30,31 +38,36 @@ This project includes all the assets you need to get up and running with the Qui
 - **Usage:**  
   Refer to this diagram for a quick conceptual overview of the database design when troubleshooting or developing new features.
 
+  ![alt text](./database/er_diagram.png)
 ---
 
 ### Database Setup Instructions
 
-1. **Create the database and tables:**
+1. **Enter the directory after cloning:**
+
+```bash
+cd database
+```
+
+2. **Create the database and tables:**
 
 ```bash
 mysql -u <user> -p < schema.sql
 ```
 
-2. **Insert the sample data:**
+3. **Insert the sample data:**
 
 ```bash
 mysql -u <user> -p < sample_data.sql
 ```
 
-3. **Verify your tables and data**  
+4. **Verify your tables and data**  
 Use the SELECT statements in `schema.sql` or a MySQL client to check that tables and data are loaded as expected.
 
 ---
 
 **Note:**  
 Be careful not to run the schema file on a database with important existing data—it will overwrite tables!
-
-You can adjust the paths or descriptions if your files or table names differ. If you place this section after your "Technologies Used" section, it will make your README informative and helpful for new developers or users setting up your application!
 
 ---------------------------------------------------------------------------------------------------
 
@@ -67,12 +80,18 @@ A Flask-based application for registering customers, assigning processes, upload
 ## Setup Instructions
 
 
-2. **Install and activate a virtual environment (optional but recommended)**
+1. **Install and activate a virtual environment (optional but recommended)**
 
 ```bash
 python -m venv venv
 source venv/bin/activate # On Unix/Mac
 venv\Scripts\activate # On Windows
+```
+
+2. **Enter the directory after cloning:**
+
+```bash
+cd application
 ```
 
 3. **Install required dependencies**
@@ -86,7 +105,7 @@ pip install -r requirements.txt
 - Flask-MySQLdb
 - python-dotenv
 
-4. **Set up your `.env` file**
+3. **Set up your `.env` file**
 
 Create a `.env` file in your project directory with the following content. Replace values as needed:
 
@@ -98,7 +117,7 @@ MYSQL_DB=quickdocs
 MYSQL_CURSORCLASS=DictCursor
 
 
-5. **Database Setup**
+4. **Database Setup**
 - Make sure you have a MySQL server running.
 - Create the database and required tables (customers, processes, process_assignments, document_types, document_submissions).
 - Update the names in `db_config.py` or `.env` if necessary.
@@ -109,6 +128,11 @@ MYSQL_CURSORCLASS=DictCursor
 
 1. **Activate your virtual environment if not already active**
 2. **Start the Flask app**
+
+```bash
+python app.py
+```
+
 3. **Access the app**
 Visit [http://localhost:5000](http://localhost:5000) in your browser.
 
@@ -149,22 +173,20 @@ An intuitive tool that converts natural language questions into accurate MySQL S
 
 ## Setup Instructions
 
-1. **Create and activate a virtual environment (recommended)**
+1. **Activate the previously created virtual environment**
 
 ```bash
-python -m venv venv
 source venv/bin/activate # On Unix or MacOS
 venv\Scripts\activate # On Windows
 ```
-
-2. **Install required Python dependencies**
+2. **Enter the directory after cloning:**
 
 ```bash
-pip install -r requirements.txt
+cd nl_query
 ```
 
 3. **Set up your environment variables**
-- Create a `.env` file in your root directory with the following, replacing placeholder values as appropriate:
+- Create a `.env` file in your project directory with the following, replacing placeholder values as appropriate:
   ```
   OPENAI_API_KEY=your_openai_api_key
   MYSQL_HOST=localhost
@@ -174,14 +196,16 @@ pip install -r requirements.txt
   ```
 - **Do not include actual API keys in this file if sharing it publicly.**
 
-4. **Ensure your MySQL database is running and contains the required schema (see `main.py`).**
+4. **Ensure your MySQL database is running and contains the required schema.**
 
 ## How to Run the Application
 
 1. Ensure your virtual environment is active.
 2. Run the main program:
 
+```bash
 python query_interface.py
+```
 
 3. When prompted, enter a natural language query (e.g., "Show all customers registered after July 2024").
 4. The application will:
@@ -216,11 +240,11 @@ python query_interface.py
 
 ## Example of Successful Queries
 
-![alt text](<image1.jpg>)
+![alt text](</nl_query/image1.jpg>)
 
 ## Example of Error Handling
 
-![alt text](<image2.jpg>)
+![alt text](<./nl_query/image2.jpg>)
 
 ---
 
